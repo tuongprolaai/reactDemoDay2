@@ -1,36 +1,65 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 
 function News() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((posts) => {
-        setPosts(posts);
-      });
-  }, []);
-  return (
-    <div>
-      <h1>News page component</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link to={`/news/${post.id}`} replace>
-              {post.id}. {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    const [params, setParams] = useSearchParams();
+    const [page, setPage] = useState(() => +params.get("page") || 1);
+    const [posts, setPosts] = useState([]);
 
-      <h2>Pagination: </h2>
-      <ul>{Array(10).fill(null).map((_, index)=>(
-        <li key={index}>{index + 1}</li>
-      ))}</ul>
-    </div>
-  );
+    useEffect(() => {
+        fetch(
+            `https://jsonplaceholder.typicode.com/posts?_limit=50&_page=${page}`,
+        )
+            .then((res) => res.json())
+            .then((posts) => {
+                setPosts(posts);
+            });
+    }, [page]);
+
+    useEffect(() => {
+        setParams(page <= 1 ? "" : { page });
+    }, [page, setParams]);
+
+    return (
+        <div>
+            <h1>News</h1>
+            <ul>
+                {posts.map((post) => (
+                    <li key={post.id}>
+                        <Link to={`/news/${post.id}`} replace>
+                            {post.id}. {post.title}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+
+            <h2>Pagination: </h2>
+            <ul style={{ display: "flex" }}>
+                {Array(2)
+                    .fill(null)
+                    .map((_, index) => {
+                        const pageNum = index + 1;
+                        const isActive = page === pageNum;
+                        return (
+                            <li
+                                key={index}
+                                style={{
+                                    border: "1px solid #333",
+                                    padding: "2px 4px",
+                                    color: isActive ? "#fff" : "#333",
+                                    background: isActive ? "#333" : "",
+                                }}
+                                onClick={() => {
+                                    setPage(pageNum);
+                                }}
+                            >
+                                {pageNum}
+                            </li>
+                        );
+                    })}
+            </ul>
+        </div>
+    );
 }
 
 export default News;
-
-// 36: 3:13:02

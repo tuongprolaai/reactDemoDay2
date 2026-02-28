@@ -1,0 +1,17 @@
+-layouts
+    DefaultLayout
+        components
+            AppLogo
+            SearchForm
+            MyCourses
+            Notification
+            UserMenu
+            Header
+                <AppLogo />
+                <SearchForm />
+                <MyCourses />
+                <Notification />
+                <UserMenu />
+            Sidebar
+            Footer
+                <AppLogo whiteText />
