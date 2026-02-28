@@ -13,6 +13,7 @@ import UseState from "../../pages/UseState";
 
 // Components
 import ScrollToTop from "../../components/ScrollToTop";
+import Cleanup from "../../pages/Cleanup";
 
 function AppRoutes() {
     return (
@@ -21,20 +22,24 @@ function AppRoutes() {
             <Routes>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Dashboard />}></Route>
-                    <Route path="news" element={<News />}></Route>
-                    <Route path="contact" element={<Contact />}></Route>
                 </Route>
 
+                {/* Default layout pages */}
                 <Route element={<DefaultLayout />}>
-                    <Route index element={<Home />}></Route>
-                    <Route path="use-state" element={<UseState />}></Route>
                     <Route path="news" element={<News />}></Route>
                     <Route path="news/:id" element={<PostDetail />}></Route>
+                    <Route path="/contact" element={<Contact />}></Route>
+                    <Route path="cleanup" element={<Cleanup />}></Route>
                 </Route>
 
+                {/* Sidebar layout pages */}
                 <Route element={<SidebarLayout />}>
                     <Route path="/contact" element={<Contact />}></Route>
                 </Route>
+
+                {/* No layout */}
+                <Route index element={<Home />}></Route>
+                <Route path="use-state" element={<UseState />}></Route>
             </Routes>
         </Router>
     );

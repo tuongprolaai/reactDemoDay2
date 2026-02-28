@@ -1,8 +1,16 @@
--layouts
+components
+    Modal 
+        Container
+layouts
     DefaultLayout
         components
             AppLogo
             SearchForm
+                SearchResult
+                    index.jsx
+                    SearchResult.module.scss
+                index.jsx
+                SearchForm.module.scss
             MyCourses
             Notification
             UserMenu
@@ -15,3 +23,38 @@
             Sidebar
             Footer
                 <AppLogo whiteText />
+
+function ModalHeader({title}){
+    return (
+        <div className="modal-header">
+            <h1>{title}</h1>
+            ...
+        </div>
+    )
+}
+
+function ModalBody(){
+    return (
+        <div className="modal-body">
+        </div>
+    )
+}
+
+function ModalFooter(){
+    return (
+        <div className="modal-footer">
+            <button>Cancel</button>
+            <button>Confirm</button>
+        </div>
+    )
+}
+
+function Modal(){
+    return (
+        <div className="modal">
+            <ModalHeader title={title} />
+            <ModalBody />
+            <ModalFooter />
+        </div>
+    )
+}
