@@ -1,22 +1,50 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  memo,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import Modal from "../../components/Modal";
+
+const ChildComponent = forwardRef((props, ref) => {
+  const [counter, setCounter] = useState(0);
+
+  useImperativeHandle(ref, () => {
+    return {
+      increase() {
+        setCounter(counter + 1);
+      },
+    };
+  }, [counter]);
+
+  const handleCounterChange = () => {
+    setCounter(counter + 1);
+  };
+
+  return <button onClick={handleCounterChange}>Counter is {counter}</button>;
+});
 
 function Hooks() {
-    const [show, setShow] = useState(false);
-    const inputRef = useRef(null);
+  const childRef = useRef(null);
+  const modalRef = useRef(null);
 
-    return (
-        <div>
-            {show && <input type="text" ref={inputRef} />}
-            <button onClick={() => setShow(!show)}>Toggle</button>
-            <button
-                onClick={() => {
-                    console.log(inputRef.current);
-                }}
-            >
-                Log
-            </button>
-        </div>
-    );
+    const handleRef = (modal)=>{
+        console.loh(modal);
+        if(modal) modal.open();
+    }
+
+  return (
+    <div>
+      <ChildComponent ref={childRef} />
+      <button onClick={() => childRef.current.increase()}>Increase</button>
+      <Modal ref={handleRef}><h1>Modal Content</h1>
+        <button conLick={()=>modalRef.current.close()}>Close modal</button>
+      </Modal>
+      <button onClick={()=>modalRef.current.open()}>Open modal</button>
+    </div>
+  );
 }
 
 export default Hooks;
