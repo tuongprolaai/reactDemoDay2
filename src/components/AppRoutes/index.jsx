@@ -14,6 +14,8 @@ import UseState from "../../pages/UseState";
 // Components
 import ScrollToTop from "../../components/ScrollToTop";
 import Cleanup from "../../pages/Cleanup";
+import Cleanup2 from "../../pages/Cleanup2";
+import Hooks from "../../pages/Hooks";
 
 function AppRoutes() {
     return (
@@ -40,6 +42,8 @@ function AppRoutes() {
                 {/* No layout */}
                 <Route index element={<Home />}></Route>
                 <Route path="use-state" element={<UseState />}></Route>
+                <Route path="cleanup2" element={<Cleanup2 />}></Route>
+                <Route path="hooks" element={<Hooks />}></Route>
             </Routes>
         </Router>
     );
