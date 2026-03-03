@@ -1,11 +1,8 @@
-function useCounter(){
+import { useCounter } from "../../hooks";
 
-}
-
-const CustomHook = ()=>{
-    return <h1>Custom hook</h1>
-}
+const CustomHook = () => {
+    const [counter, increase] = useCounter();
+    return <button onClick={increase}>Increase ({counter})</button>;
+};
 
 export default CustomHook;
-
-// 38-4:03:27

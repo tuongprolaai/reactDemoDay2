@@ -19,6 +19,7 @@ import Hooks from "../../pages/Hooks";
 import HOC from "../../pages/HOC";
 import RenderProps from "../../pages/RenderProps";
 import CustomHook from "../../pages/CustomHook";
+import Debounce from "@/pages/Debounce";
 
 function AppRoutes() {
     return (
@@ -50,6 +51,7 @@ function AppRoutes() {
                 <Route path="hoc" element={<HOC />}></Route>
                 <Route path="render-props" element={<RenderProps />}></Route>
                 <Route path="custom-hook" element={<CustomHook />}></Route>
+                <Route path="debounce" element={<Debounce />}></Route>
             </Routes>
         </Router>
     );
