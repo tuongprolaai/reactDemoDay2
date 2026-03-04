@@ -1,0 +1,23 @@
+.wrapper {
+}
+
+.tabsList {
+    display: flex;
+    gap: 8px;
+    border-bottom: 3px solid orange;
+}
+
+.tabContent {
+    padding: 20px;
+}
+
+.tabItem {
+    background: #ccc;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.tabItem.active {
+    color: #fff;
+    background: orange;
+}

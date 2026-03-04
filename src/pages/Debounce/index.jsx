@@ -1,3 +1,4 @@
+import useDebounce from "@/hooks/useDebounce";
 import { useEffect, useRef, useState } from "react";
 
 const styles = {
@@ -11,7 +12,7 @@ const styles = {
 function Debounce() {
     const [products, setProducts] = useState([]);
     const [searchValue, setSearchValue] = useState("");
-    const timerRef = useRef();
+    const keyword = useDebounce(searchValue, 500);
 
     useEffect(() => {
         fetch(`https://api01.f8team.dev/api/products`)
@@ -22,16 +23,13 @@ function Debounce() {
     }, []);
 
     useEffect(() => {
-        if (!searchValue) return;
-        clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => {
-            fetch(`https://api01.f8team.dev/api/products?q=${searchValue}`)
-                .then((res) => res.json())
-                .then((result) => {
-                    setProducts(result.data.items);
-                });
-        }, 500);
-    }, [searchValue]);
+        if (!keyword) return;
+        fetch(`https://api01.f8team.dev/api/products?q=${keyword}`)
+            .then((res) => res.json())
+            .then((result) => {
+                setProducts(result.data.items);
+            });
+    }, [keyword]);
 
     return (
         <div style={styles.wrapper}>
