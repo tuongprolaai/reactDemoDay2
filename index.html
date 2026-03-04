@@ -1,15 +1,27 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite + React</title>
-    </head>
-    <body>
-        <div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script>
+      const isDark = localStorage.getItem("theme") === "dark";
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      }
+      function toggleTheme() {
+        const currentTheme = localStorage.getItem("theme");
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        localStorage.setItem("theme", nextTheme);
+        document.documentElement.classList.toggle("dark", nextTheme === "dark");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
 
-        <!-- <a class="link active" href="/">Home</a>
+    <!-- <a class="link active" href="/">Home</a>
     <a class="link" href="/news">News</a>
     <a class="link" href="/contact">Contact</a>
 
@@ -49,8 +61,8 @@
       renderPage(window.location.pathname || "/");
     </script> -->
 
-        <script type="module" src="/src/main.jsx"></script>
-    </body>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
 
 <!-- 37-1:28:04 -->

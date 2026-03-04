@@ -21,6 +21,8 @@ import RenderProps from "../../pages/RenderProps";
 import CustomHook from "../../pages/CustomHook";
 import Debounce from "@/pages/Debounce";
 import TabsDemo from "@/pages/Tabs";
+import Forms from "@/pages/Forms";
+import ContextAPI from "@/pages/ContextAPI";
 
 function AppRoutes() {
     return (
@@ -54,6 +56,8 @@ function AppRoutes() {
                 <Route path="custom-hook" element={<CustomHook />}></Route>
                 <Route path="debounce" element={<Debounce />}></Route>
                 <Route path="tabs-demo" element={<TabsDemo />}></Route>
+                <Route path="forms" element={<Forms />}></Route>
+                <Route path="context-api" element={<ContextAPI />}></Route>
             </Routes>
         </Router>
     );
